@@ -9,7 +9,7 @@ Starting migrations...
 ======================
 > Network name:    'rinkeby'
 > Network id:      4
-> Block gas limit: 0x6ad1ee
+> Block gas limit: 0x6acfc0
 
 
 1_initial_migration.js
@@ -17,13 +17,13 @@ Starting migrations...
 
    Replacing 'Migrations'
    ----------------------
-   > transaction hash:    0xe5db569fc77f6c8815e4c1f7fccaaf149623d58309cfebaebaa6f9799c627444
+   > transaction hash:    0x5e7224270acf8c7ea17dc1eb0dd52a25b2fda9894272b502444d5da736b8e970
    > Blocks: 0            Seconds: 4
-   > contract address:    0x048a5AA58967CEeF56Dbb0bbba62c0eb0f22cc95
-   > block number:        4609878
-   > block timestamp:     1561277959
+   > contract address:    0x6dBF94fC4Ba41bc427854942a7C2Df1B96E019FA
+   > block number:        4610156
+   > block timestamp:     1561282129
    > account:             0x0eeAD8F49566050A41299A7Be03a201CaefD9288
-   > balance:             18.551106607
+   > balance:             18.473504847
    > gas used:            224195
    > gas price:           20 gwei
    > value sent:          0 ETH
@@ -31,8 +31,8 @@ Starting migrations...
 
    Pausing for 2 confirmations...
    ------------------------------
-   > confirmation number: 1 (block: 4609879)
-   > confirmation number: 2 (block: 4609880)
+   > confirmation number: 1 (block: 4610157)
+   > confirmation number: 2 (block: 4610158)
 
    > Saving migration to chain.
    > Saving artifacts
@@ -45,32 +45,32 @@ Starting migrations...
 
    Replacing 'SistemaSanitario'
    ----------------------------
-   > transaction hash:    0xdad527b9625cb1e4a937ff2a088e6ad4cb870f3ebda6405bff0beb70a9baa0e1
-   > Blocks: 0            Seconds: 8
-   > contract address:    0x880e3bcC05C6faF11F39071BE5282eEaf09d6201
-   > block number:        4609882
-   > block timestamp:     1561278019
+   > transaction hash:    0xd22527089b5ae3af8b30428bc1849cd64944c91a1278410ebdd63e29af8769fc
+   > Blocks: 0            Seconds: 12
+   > contract address:    0xD331496F58bCA52b2d740D89de497877C0A3EF7c
+   > block number:        4610160
+   > block timestamp:     1561282189
    > account:             0x0eeAD8F49566050A41299A7Be03a201CaefD9288
-   > balance:             18.478526907
-   > gas used:            3587077
+   > balance:             18.399970347
+   > gas used:            3634817
    > gas price:           20 gwei
    > value sent:          0 ETH
-   > total cost:          0.07174154 ETH
+   > total cost:          0.07269634 ETH
 
    Pausing for 2 confirmations...
    ------------------------------
-   > confirmation number: 1 (block: 4609883)
-   > confirmation number: 2 (block: 4609884)
+   > confirmation number: 1 (block: 4610160)
+   > confirmation number: 2 (block: 4610161)
 
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:          0.07174154 ETH
+   > Total cost:          0.07269634 ETH
 
 
 Summary
 =======
 > Total deployments:   2
-> Final cost:          0.07622544 ETH
+> Final cost:          0.07718024 ETH
 
 MacBook-Pro-de-Jordi:SSID jordimorreres$
