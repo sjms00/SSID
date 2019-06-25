@@ -29,7 +29,6 @@ contract SistemaSanitario is TokenSSID {
         uint SSID;
         uint fechaalta;
         uint fechabaja;
-        uint fechareactivacion;
         uint estado;
         bool isExist;
         Expediente[] expediente;
@@ -67,14 +66,23 @@ contract SistemaSanitario is TokenSSID {
         uint _numExpediente,
         uint _fecha
         );
-    
+    /** 
+    * @dev Al contructor le pasamos como parametros nombre sel sistema sanitario y el pais para una 
+    * ampliación de las funcionalidades
+    * @param _nombre string nombre sel sistema sanitario
+    * @param _pais string indicando el pais del sistema sanitario
+    */
     constructor(string _nombre, string _pais) public {
         sanidad_nombre = _nombre;
         sanidad_pais = _pais;
         sanidad_addr = msg.sender;
     }
     
-    //Los medicos se dan de alta
+    /** 
+    * @dev Alta de un medico, los medicos se dan de alta ellos mismos
+    * revert si medico ya existe
+    * @param _especialidad string especialidad del medico que se da de alta
+    */
     function altaMedico (string _especialidad)  public {
         address aux;
         aux = msg.sender;
@@ -87,7 +95,15 @@ contract SistemaSanitario is TokenSSID {
         medicos[aux].autorizado = false;
         medicos[aux].isExist = true;
     }
-    // Solo Sanidad puede consultar medico
+    /**  
+    * @dev Consulta médico, solo Sanidad puede consultar medico
+    * revert si medico no existe
+    * @param _adrMedico address del medico a dar de alta
+    * @return string especialidad del medico
+    * @return uint fecha de alta
+    * @return uint fecha de baja
+    * @return bool si esta autorizado o no
+    */
     function consultaMedico(address _adrMedico) public view restrictedBySanidad returns (string, uint, uint, bool){
         require(medicos[_adrMedico].isExist, "Medico no existe");
         return (
@@ -97,13 +113,23 @@ contract SistemaSanitario is TokenSSID {
             medicos[_adrMedico].autorizado
         );
     }
-    // Solo Sanidad puede dar de baja un medico, queda desautorizado
-    function bajaMedico(address _adrMedico) public restrictedBySanidad returns (string, uint, uint, bool){
+    /**
+    * @dev Baja de un medico, solo Sanidad puede dar de baja un medico, queda desautorizado
+    * revert si el medico no existe
+    * @param _adrMedico address del medico
+    */
+    function bajaMedico(address _adrMedico) public restrictedBySanidad {
         require(medicos[_adrMedico].isExist, "Medico no existe");
         medicos[_adrMedico].fechabaja = now;
         medicos[_adrMedico].autorizado = false;
     }
-    // Solo Sanidad puede autorizar a un medico
+    /**
+    * @dev Autorizar medico, solo Sanidad puede autorizar a un medico
+    * revert si no es sanidad quin lo ejecuta
+    * revert si el medico ya estaba autorizado
+    * revert si el medico no existe
+    * @param _adrMedico address del medico
+    */
     function autorizarMedico (address _adrMedico)  public restrictedBySanidad {
         address aux;
         aux = msg.sender;
@@ -112,7 +138,13 @@ contract SistemaSanitario is TokenSSID {
         require(medicos[_adrMedico].isExist, "Medico no existente");
         medicos[_adrMedico].autorizado = true;
     }
-    // Solo Sanidad puede desautorizar a un medico
+    /**
+    * @dev desautorizar medico, solo Sanidad puede desautorizar a un medico
+    * revert si no es sanidad quin lo ejecuta
+    * revert si el medico ya estaba desautorizado
+    * revert si el medico no existe
+    * @param _adrMedico address del medico
+    */
     function desautorizarMedico (address _adrMedico)  public restrictedBySanidad {
         address aux;
         aux = msg.sender;
@@ -121,7 +153,11 @@ contract SistemaSanitario is TokenSSID {
         require(medicos[_adrMedico].isExist, "Medico no existente");
         medicos[_adrMedico].autorizado = false;
     }
-    // Solo Sanidad puede dar de alta un ciudadano
+    /**
+    * @dev Alta ciudadano, solo Sanidad puede dar de alta un ciudadano, se le asigna un Token SSID
+    * revert si el ciudadano ya existe
+    * @param _adrCiudadano address del ciudadano
+    */
     function altaCiudadano (address _adrCiudadano)  public restrictedBySanidad {
         require(!ciudadanos[_adrCiudadano].isExist,"Ciudadano ya existe");
         ciudadanos[_adrCiudadano].ciudadano = _adrCiudadano;
@@ -130,15 +166,23 @@ contract SistemaSanitario is TokenSSID {
         ciudadanos[_adrCiudadano].isExist = true;
         ciudadanos[_adrCiudadano].SSID = mintTo(_adrCiudadano);
     }
-
-    // Solo Sanidad puede dar de baja un ciudadano
+    /**
+    * @dev Baja ciudadano, solo Sanidad puede dar de baja un ciudadano
+    * revert si el ciudadano no existe
+    * @param _adrCiudadano address del ciudadano
+    */
     function bajaCiudadano (address _adrCiudadano)  public restrictedBySanidad {
         require(ciudadanos[_adrCiudadano].isExist, "Ciudadano no existe");
         ciudadanos[_adrCiudadano].fechabaja = now;
         ciudadanos[_adrCiudadano].estado = 2; // 2 Baja
     }
-    // Solo Sanidad puede modificar el estado un ciudadano
-    // El ciudadano debe de existir
+    /**
+    * @dev Modificar el estado de un ciudadano, solo Sanidad puede modificar el estado un ciudadano
+    * solo se permite estado: 0=desaperecido, 1=alta
+    * revert si el ciudadano no existe
+    * @param _adrCiudadano address del ciudadano
+    * @param _estado uint con el valor del nuevo estado
+    */
     function modifCiudadano (address _adrCiudadano, uint _estado)  public restrictedBySanidad {
         require(ciudadanos[_adrCiudadano].isExist, "Ciudadano no existe");
         require(_estado <2, "Estados permitidos: 0=desaperecido, 1=alta");
@@ -147,6 +191,12 @@ contract SistemaSanitario is TokenSSID {
     }
 
     // Solo Sanidad puede dar de alta una Aseguradora
+     /**
+    * @dev Alta aseguradora, solo Sanidad puede dar de alta una aseguradora
+    * revert si la aseguradora ya existe
+    * @param _adrAseguradora address de la aseguradora
+    * @param _especialidad string con la especialidad de la aseguradora
+    */
     function altaAseguradora (address _adrAseguradora, string _especialidad)  public restrictedBySanidad {
         require(!aseguradoras[_adrAseguradora].isExist,"Aseguradora ya existe");
         aseguradoras[_adrAseguradora].seguro = _adrAseguradora;
@@ -155,9 +205,19 @@ contract SistemaSanitario is TokenSSID {
         aseguradoras[_adrAseguradora].autorizado = true; 
         aseguradoras[_adrAseguradora].isExist = true;
     }
-    // Solo un medico autorizado por Sanidad puede insertar un expediente
-    // Un medico no se puede autodiagnosticar
-    // El ciudadano debe de estar en estado = 1 (alta)
+    
+    /**
+    * @dev Insertar expediente, solo lo puede realizar un medico autorizado por Sanidad
+    * revert si el ciudadano no existe
+    * revert si el ciudadano es el propio medico, no se permite autodiagnosticar
+    * revert si el estado del ciudadano no es igual a 1 (alta)
+    * @param _adrCiudadano address del ciudadano al que se a diagnosticado
+    * @param _dolencia string con la dolencia diagnosticada
+    * @param _tratamiento string con el tratamiento medico
+    * @param _duracion uint con la duracion del tratamiento
+    * @dev se genera un evento con información del medico que lo ha diagnosticado, ciudadano, 
+    * token SSID, Nº expediente y fecha
+    */
     function insertExpediente (address _adrCiudadano,string _dolencia,string _tratamiento,uint _duracion) public restrictedByMedicoAutorizado{
         Expediente memory aux_Expediente;
         uint _IDexpediente;
@@ -184,8 +244,22 @@ contract SistemaSanitario is TokenSSID {
         );
     }
 
-    // Solo un medico autorizado por Sanidad puede consultar un expediente
-     function consultaExpediente (address _adrCiudadano, uint _IDexpediente)  public restrictedByMedicoAutorizado returns(uint,address,string,string,string,uint) {
+    /**
+    * @dev Consultar expediente, solo lo puede realizar un medico autorizado por Sanidad
+    * revert si el ciudadano no existe
+    * revert si el ID del expediente no existe
+    * @param _adrCiudadano address del ciudadano al que se a diagnosticado
+    * @param _IDexpediente uint ID del expediente a consultar
+    * @dev se genera un evento con información del medico que lo ha consultado, ciudadano, 
+    * token SSID, Nº expediente y fecha
+    * @return uint fecha del expediente
+    * @return address del medico que lo diagnosticó
+    * @return string especialidad del medico que lo diagnosticó
+    * @return string de la dolencia
+    * @return string con el tratamiento
+    * @return uint con el token SSID del ciudadano
+    */
+    function consultaExpediente (address _adrCiudadano, uint _IDexpediente)  public restrictedByMedicoAutorizado returns(uint,address,string,string,string,uint) {
         address aux_medico;
         aux_medico = msg.sender;
         require(ciudadanos[_adrCiudadano].isExist, "Ciudadano no existe");
@@ -208,7 +282,22 @@ contract SistemaSanitario is TokenSSID {
             ciudadanos[_adrCiudadano].SSID
             );
     }
-    // Solo un medico autorizado por Sanidad puede consultar un expediente
+    
+    /**
+    * @dev Consultar expediente, solo lo puede realizar una aseguradora autorizada por Sanidad
+    * revert si el ciudadano no existe
+    * revert si el ID del expediente no existe
+    * @param _adrCiudadano address del ciudadano al que se a diagnosticado
+    * @param _IDexpediente uint ID del expediente a consultar
+    * @dev se genera un evento con información de la aseguradora que lo ha consultado, ciudadano, 
+    * token SSID, Nº expediente y fecha
+    * @return uint fecha del expediente
+    * @return address del medico que lo diagnosticó
+    * @return string especialidad del medico que lo diagnosticó
+    * @return string de la dolencia
+    * @return string con el tratamiento
+    * @return uint con el token SSID del ciudadano
+    */
      function consultaExpedienteAseguradora (address _adrCiudadano, uint _IDexpediente)  
         public payable restrictedByAseguradoraAutorizada returns(uint,address,string,string,string,uint) {
         address aux_aseguradora;

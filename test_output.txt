@@ -1,0 +1,171 @@
+MacBook-Pro-de-Jordi:SSID jordimorreres$ truffle test
+Using network 'development'.
+
+
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+
+
+
+Accounts [ '0x6716E4CCeF126eeeBE42697D369E03b6CfD877f4',
+  '0x81E895aEaF9a6Ad00aCBE97829b117bbB8E48808',
+  '0xF9a4E9b6564B1532867d97C4933e215FF1191645',
+  '0xD802C7b9b22F479F8abf92617AB1F114d3Ccf091',
+  '0xB03283367553384FeA76FD46734c76FF377D00e6',
+  '0x6dAb710ACd222e9b058093C0fb4baA56f8DafEd7',
+  '0x304bA19523EA5c13B98F13ad4C3076AD74A72588',
+  '0xc07F07f702213B64D5dBA195Ca450C5672B63b92',
+  '0x693Db654894582dCD3EF8Dca22dDC2B65eD0272d',
+  '0x15D68d12F2182d31D5a163a501Bd9FaF83434d51' ]
+SSID Deployed at: 0x007d67Be45f4086dc9a505A596538B683aC85E0E
+  Contract: SistemaSanitario
+    ✓ deploys a contract
+SANIDAD 0x6716E4CCeF126eeeBE42697D369E03b6CfD877f4
+    ✓ SANIDAD
+alta aseguradora 1 0x304bA19523EA5c13B98F13ad4C3076AD74A72588
+    ✓ alta aseguradora 1 (45ms)
+alta medico 1 0x81E895aEaF9a6Ad00aCBE97829b117bbB8E48808
+    ✓ alta medico 1 (45ms)
+alta medico 2
+medico 2 0xF9a4E9b6564B1532867d97C4933e215FF1191645
+    ✓ alta medico 2 (43ms)
+consulta medico 1
+medico 1 0x81E895aEaF9a6Ad00aCBE97829b117bbB8E48808
+medico 1 consulta:  Result { '0': 'Dentista', '1': '1561495665', '2': '0', '3': false }
+    ✓ consulta medico 1
+Sanidad autoriza medico 1
+    ✓ Autorizamos medico 1 (39ms)
+Medico autoriza medico 2 (KO)
+Error: Returned error: VM Exception while processing transaction: revert Restringuida a Sanidad
+    at Object.ErrorResponse (/usr/local/lib/node_modules/truffle/build/webpack:/~/web3-core-requestmanager/~/web3-core-helpers/src/errors.js:29:1)
+    at /usr/local/lib/node_modules/truffle/build/webpack:/~/web3-core-requestmanager/src/index.js:140:1
+    at /usr/local/lib/node_modules/truffle/build/webpack:/packages/truffle-provider/wrapper.js:112:1
+    at XMLHttpRequest.request.onreadystatechange (/usr/local/lib/node_modules/truffle/build/webpack:/~/web3-providers-http/src/index.js:96:1)
+    at XMLHttpRequestEventTarget.dispatchEvent (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request-event-target.js:34:1)
+    at XMLHttpRequest._setReadyState (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:208:1)
+    at XMLHttpRequest._onHttpResponseEnd (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:318:1)
+    at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:289:47)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1129:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+    ✓ Autorizamos medico 2 (1659ms)
+alta ciudadano 1 0xD802C7b9b22F479F8abf92617AB1F114d3Ccf091
+    ✓ alta ciudadano 1 (104ms)
+alta ciudadano 2 0xB03283367553384FeA76FD46734c76FF377D00e6
+Error: Returned error: VM Exception while processing transaction: revert Restringuida a Sanidad
+    at Object.ErrorResponse (/usr/local/lib/node_modules/truffle/build/webpack:/~/web3-core-requestmanager/~/web3-core-helpers/src/errors.js:29:1)
+    at /usr/local/lib/node_modules/truffle/build/webpack:/~/web3-core-requestmanager/src/index.js:140:1
+    at /usr/local/lib/node_modules/truffle/build/webpack:/packages/truffle-provider/wrapper.js:112:1
+    at XMLHttpRequest.request.onreadystatechange (/usr/local/lib/node_modules/truffle/build/webpack:/~/web3-providers-http/src/index.js:96:1)
+    at XMLHttpRequestEventTarget.dispatchEvent (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request-event-target.js:34:1)
+    at XMLHttpRequest._setReadyState (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:208:1)
+    at XMLHttpRequest._onHttpResponseEnd (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:318:1)
+    at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:289:47)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1129:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+    ✓ alta ciudadano 2 (41ms)
+insertar expediente 0 a ciudadano 1 por medico autorizado
+medico   :  0x81E895aEaF9a6Ad00aCBE97829b117bbB8E48808
+ciudadano:  0xD802C7b9b22F479F8abf92617AB1F114d3Ccf091
+    ✓ insertar expediente a ciudadano 1 por medico autorizado (75ms)
+insertar expediente a ciudadano 1 por medico NO autorizado
+medico   :  0xF9a4E9b6564B1532867d97C4933e215FF1191645
+ciudadano:  0xD802C7b9b22F479F8abf92617AB1F114d3Ccf091
+Error: Returned error: VM Exception while processing transaction: revert Requiere medico autorizado
+    at Object.ErrorResponse (/usr/local/lib/node_modules/truffle/build/webpack:/~/web3-core-requestmanager/~/web3-core-helpers/src/errors.js:29:1)
+    at /usr/local/lib/node_modules/truffle/build/webpack:/~/web3-core-requestmanager/src/index.js:140:1
+    at /usr/local/lib/node_modules/truffle/build/webpack:/packages/truffle-provider/wrapper.js:112:1
+    at XMLHttpRequest.request.onreadystatechange (/usr/local/lib/node_modules/truffle/build/webpack:/~/web3-providers-http/src/index.js:96:1)
+    at XMLHttpRequestEventTarget.dispatchEvent (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request-event-target.js:34:1)
+    at XMLHttpRequest._setReadyState (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:208:1)
+    at XMLHttpRequest._onHttpResponseEnd (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:318:1)
+    at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:289:47)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1129:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+    ✓ insertar expediente a ciudadano 1 por medico NO autorizado
+alta ciudadano/medico 1 0x81E895aEaF9a6Ad00aCBE97829b117bbB8E48808
+    ✓ alta ciudadano/medico 1 (74ms)
+insertar expediente medico 1 por medico 1 NO permitido
+medico   :  0x81E895aEaF9a6Ad00aCBE97829b117bbB8E48808
+ciudadano:  0x81E895aEaF9a6Ad00aCBE97829b117bbB8E48808
+Error: Returned error: VM Exception while processing transaction: revert No se permite autodiagnosticar
+    at Object.ErrorResponse (/usr/local/lib/node_modules/truffle/build/webpack:/~/web3-core-requestmanager/~/web3-core-helpers/src/errors.js:29:1)
+    at /usr/local/lib/node_modules/truffle/build/webpack:/~/web3-core-requestmanager/src/index.js:140:1
+    at /usr/local/lib/node_modules/truffle/build/webpack:/packages/truffle-provider/wrapper.js:112:1
+    at XMLHttpRequest.request.onreadystatechange (/usr/local/lib/node_modules/truffle/build/webpack:/~/web3-providers-http/src/index.js:96:1)
+    at XMLHttpRequestEventTarget.dispatchEvent (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request-event-target.js:34:1)
+    at XMLHttpRequest._setReadyState (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:208:1)
+    at XMLHttpRequest._onHttpResponseEnd (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:318:1)
+    at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:289:47)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1129:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+    ✓ insertar expediente a medico 1 por medico 1 NO permitido
+consulta expediente 0 de ciudadano 1 por medico autorizado
+medico   :  0x81E895aEaF9a6Ad00aCBE97829b117bbB8E48808
+ciudadano:  0xD802C7b9b22F479F8abf92617AB1F114d3Ccf091
+Expediente:  Result {
+  '0': '1561495667',
+  '1': '0x81E895aEaF9a6Ad00aCBE97829b117bbB8E48808',
+  '2': 'Dentista',
+  '3': 'Fiebre',
+  '4': 'Aspirina',
+  '5': '1' }
+    ✓ consulta expediente 0 de ciudadano 1 por medico autorizado
+consulta expediente 0 de ciudadano 1 por medico NO autorizado
+medico   :  0xF9a4E9b6564B1532867d97C4933e215FF1191645
+ciudadano:  0xD802C7b9b22F479F8abf92617AB1F114d3Ccf091
+Error: Returned error: VM Exception while processing transaction: revert Requiere medico autorizado
+    at Object.ErrorResponse (/usr/local/lib/node_modules/truffle/build/webpack:/~/web3-core-requestmanager/~/web3-core-helpers/src/errors.js:29:1)
+    at /usr/local/lib/node_modules/truffle/build/webpack:/~/web3-core-requestmanager/src/index.js:140:1
+    at /usr/local/lib/node_modules/truffle/build/webpack:/packages/truffle-provider/wrapper.js:112:1
+    at XMLHttpRequest.request.onreadystatechange (/usr/local/lib/node_modules/truffle/build/webpack:/~/web3-providers-http/src/index.js:96:1)
+    at XMLHttpRequestEventTarget.dispatchEvent (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request-event-target.js:34:1)
+    at XMLHttpRequest._setReadyState (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:208:1)
+    at XMLHttpRequest._onHttpResponseEnd (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:318:1)
+    at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:289:47)
+    at IncomingMessage.emit (events.js:203:15)
+    at endReadableNT (_stream_readable.js:1129:12)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+    ✓ consulta expediente 0 de ciudadano 1 por medico NO autorizado
+consulta expediente 0 de ciudadano 1 por aseguradora autorizada
+aseguradora :  0x304bA19523EA5c13B98F13ad4C3076AD74A72588
+ciudadano   :  0xD802C7b9b22F479F8abf92617AB1F114d3Ccf091
+Expediente:  Result {
+  '0': '1561495667',
+  '1': '0x81E895aEaF9a6Ad00aCBE97829b117bbB8E48808',
+  '2': 'Dentista',
+  '3': 'Fiebre',
+  '4': 'Aspirina',
+  '5': '1' }
+    ✓ consulta expediente 0 de ciudadano 1 por aseguradora autorizado
+consulta expediente 0 de ciudadano 1 por aseguradora autorizada(value insufuciente) 
+aseguradora :  0x304bA19523EA5c13B98F13ad4C3076AD74A72588
+ciudadano   :  0xD802C7b9b22F479F8abf92617AB1F114d3Ccf091
+    1) consulta expediente 0 de ciudadano 1 por aseguradora autorizado (value insufuciente)
+    > No events were emitted
+
+
+  17 passing (3s)
+  1 failing
+
+  1) Contract: SistemaSanitario
+       consulta expediente 0 de ciudadano 1 por aseguradora autorizado (value insufuciente):
+     Error: Returned error: VM Exception while processing transaction: revert Pago insuficiente
+      at Object.ErrorResponse (/usr/local/lib/node_modules/truffle/build/webpack:/~/web3-core-requestmanager/~/web3-core-helpers/src/errors.js:29:1)
+      at /usr/local/lib/node_modules/truffle/build/webpack:/~/web3-core-requestmanager/src/index.js:140:1
+      at /usr/local/lib/node_modules/truffle/build/webpack:/packages/truffle-provider/wrapper.js:112:1
+      at XMLHttpRequest.request.onreadystatechange (/usr/local/lib/node_modules/truffle/build/webpack:/~/web3-providers-http/src/index.js:96:1)
+      at XMLHttpRequestEventTarget.dispatchEvent (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request-event-target.js:34:1)
+      at XMLHttpRequest._setReadyState (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:208:1)
+      at XMLHttpRequest._onHttpResponseEnd (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:318:1)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/truffle/build/webpack:/~/xhr2-cookies/dist/xml-http-request.js:289:47)
+      at endReadableNT (_stream_readable.js:1129:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+
+
+
+MacBook-Pro-de-Jordi:SSID jordimorreres$ 
