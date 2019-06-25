@@ -19,7 +19,7 @@ before(async () => {
     console.log("Accounts", accounts);
     manager = accounts[0];
     SSID = await new web3.eth.Contract(interface)
-        .deploy({ data: bytecode })
+        .deploy({ data: bytecode, arguments: ["CASS", "AND"]})
         .send({ from: manager, gas: 5000000 });
     console.log ("SSID Deployed at:", SSID.options.address );
   });
